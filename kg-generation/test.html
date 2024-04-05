@@ -1,0 +1,512 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="1.1">1.1</option>
+                                
+                                    <option value="1.1.1">1.1.1</option>
+                                
+                                    <option value="1.1.2">1.1.2</option>
+                                
+                                    <option value="2.1">2.1</option>
+                                
+                                    <option value="1.1.1.Q1">1.1.1.Q1</option>
+                                
+                                    <option value="1.1.1.Q2">1.1.1.Q2</option>
+                                
+                                    <option value="1.1.1.Q3">1.1.1.Q3</option>
+                                
+                                    <option value="1.1.2.Q1">1.1.2.Q1</option>
+                                
+                                    <option value="1.1.2.Q2">1.1.2.Q2</option>
+                                
+                                    <option value="1.1.2.Q3">1.1.2.Q3</option>
+                                
+                                    <option value="1.2">1.2</option>
+                                
+                                    <option value="1.2.1">1.2.1</option>
+                                
+                                    <option value="1.2.2">1.2.2</option>
+                                
+                                    <option value="2.3">2.3</option>
+                                
+                                    <option value="1.2.1.Q1">1.2.1.Q1</option>
+                                
+                                    <option value="1.2.1.Q2">1.2.1.Q2</option>
+                                
+                                    <option value="1.2.1.Q3">1.2.1.Q3</option>
+                                
+                                    <option value="1.2.2.Q1">1.2.2.Q1</option>
+                                
+                                    <option value="1.2.2.Q2">1.2.2.Q2</option>
+                                
+                                    <option value="1.2.2.Q3">1.2.2.Q3</option>
+                                
+                                    <option value="1.3">1.3</option>
+                                
+                                    <option value="1.3.1">1.3.1</option>
+                                
+                                    <option value="1.3.2">1.3.2</option>
+                                
+                                    <option value="2.1.1">2.1.1</option>
+                                
+                                    <option value="2.1.2">2.1.2</option>
+                                
+                                    <option value="3.1">3.1</option>
+                                
+                                    <option value="2.1.1.Q1">2.1.1.Q1</option>
+                                
+                                    <option value="2.1.1.Q2">2.1.1.Q2</option>
+                                
+                                    <option value="2.1.1.Q3">2.1.1.Q3</option>
+                                
+                                    <option value="2.1.2.Q1">2.1.2.Q1</option>
+                                
+                                    <option value="2.1.2.Q2">2.1.2.Q2</option>
+                                
+                                    <option value="2.1.2.Q3">2.1.2.Q3</option>
+                                
+                                    <option value="2.2">2.2</option>
+                                
+                                    <option value="2.2.1">2.2.1</option>
+                                
+                                    <option value="2.2.2">2.2.2</option>
+                                
+                                    <option value="4.2">4.2</option>
+                                
+                                    <option value="2.3.1">2.3.1</option>
+                                
+                                    <option value="2.3.2">2.3.2</option>
+                                
+                                    <option value="3.1.1">3.1.1</option>
+                                
+                                    <option value="3.1.2">3.1.2</option>
+                                
+                                    <option value="4.1">4.1</option>
+                                
+                                    <option value="3.1.1.Q1">3.1.1.Q1</option>
+                                
+                                    <option value="3.1.1.Q2">3.1.1.Q2</option>
+                                
+                                    <option value="3.1.1.Q3">3.1.1.Q3</option>
+                                
+                                    <option value="3.1.2.Q1">3.1.2.Q1</option>
+                                
+                                    <option value="3.1.2.Q2">3.1.2.Q2</option>
+                                
+                                    <option value="3.1.2.Q3">3.1.2.Q3</option>
+                                
+                                    <option value="3.2">3.2</option>
+                                
+                                    <option value="3.2.1">3.2.1</option>
+                                
+                                    <option value="3.2.2">3.2.2</option>
+                                
+                                    <option value="4.3">4.3</option>
+                                
+                                    <option value="3.3">3.3</option>
+                                
+                                    <option value="3.3.1">3.3.1</option>
+                                
+                                    <option value="3.3.2">3.3.2</option>
+                                
+                                    <option value="4.1.1">4.1.1</option>
+                                
+                                    <option value="4.1.2">4.1.2</option>
+                                
+                                    <option value="5">5</option>
+                                
+                                    <option value="4.1.1.Q1">4.1.1.Q1</option>
+                                
+                                    <option value="4.1.1.Q2">4.1.1.Q2</option>
+                                
+                                    <option value="4.1.1.Q3">4.1.1.Q3</option>
+                                
+                                    <option value="4.1.2.Q1">4.1.2.Q1</option>
+                                
+                                    <option value="4.1.2.Q2">4.1.2.Q2</option>
+                                
+                                    <option value="4.1.2.Q3">4.1.2.Q3</option>
+                                
+                                    <option value="4.2.1">4.2.1</option>
+                                
+                                    <option value="4.2.2">4.2.2</option>
+                                
+                                    <option value="4.3.1">4.3.1</option>
+                                
+                                    <option value="4.3.2">4.3.2</option>
+                                
+                                    <option value="5.1">5.1</option>
+                                
+                                    <option value="5.2">5.2</option>
+                                
+                                    <option value="5.2.Q1">5.2.Q1</option>
+                                
+                                    <option value="5.2.Q2">5.2.Q2</option>
+                                
+                                    <option value="5.2.Q3">5.2.Q3</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "1.1", "label": "Basics of Psychology", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.1", "label": "Video on psychology history", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.2", "label": "Article on psychology branches", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1", "label": "Self-Discovery", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.1.Q1", "label": "Who is considered the father of psychology?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.1.Q2", "label": "What event marked the beginning of modern psychology?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.1.Q3", "label": "Which city is known as the birthplace of psychology?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.2.Q1", "label": "Name three branches of psychology.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.2.Q2", "label": "How does cognitive psychology differ from behavioral?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.1.2.Q3", "label": "What is the focus of developmental psychology?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2", "label": "Concept of Loneliness", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.1", "label": "Quiz on personal loneliness", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.2", "label": "Journal on personal loneliness times", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.3", "label": "Connecting with Others", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.1.Q1", "label": "What scale is used to measure loneliness?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.1.Q2", "label": "Can loneliness affect physical health?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.1.Q3", "label": "Is it possible to feel lonely in a crowd?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.2.Q1", "label": "Describe a time you felt lonely and how you coped with it.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.2.Q2", "label": "How does writing about loneliness make you feel?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.2.2.Q3", "label": "What can be learned from reflecting on past loneliness?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.3", "label": "Impact of Loneliness", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.3.1", "label": "Read on loneliness effects", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "1.3.2", "label": "Infographic on loneliness impacts", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.1", "label": "Personality test", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.2", "label": "Strengths and weaknesses", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1", "label": "Healthy Relationships", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.1.Q1", "label": "What does your personality test reveal about your communication style?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.1.Q2", "label": "How can understanding your personality type improve self-awareness?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.1.Q3", "label": "Identify one strength and one weakness your personality test highlighted.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.2.Q1", "label": "How do your strengths contribute to your personal growth?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.2.Q2", "label": "In what situations have your weaknesses held you back?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.1.2.Q3", "label": "What is one actionable step you can take to address a weakness?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.2", "label": "Self-Expression Techniques", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.2.1", "label": "Art creation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.2.2", "label": "Poem or story writing", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.2", "label": "Coping Strategies", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.3.1", "label": "Forum discussion on loneliness", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "2.3.2", "label": "Social gathering planning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.1", "label": "Article on relationship types", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.2", "label": "Relationship analysis", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1", "label": "Stress and Anxiety", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.1.Q1", "label": "What are key indicators of a healthy relationship?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.1.Q2", "label": "How can the absence of healthy boundaries affect a relationship?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.1.Q3", "label": "Give an example of a boundary you could set in a personal relationship.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.2.Q1", "label": "Reflect on a relationship and identify if it was healthy or unhealthy.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.2.Q2", "label": "What role did communication play in the dynamics of this relationship?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.1.2.Q3", "label": "How would you approach this relationship differently now?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.2", "label": "Communication Skills", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.2.1", "label": "Active listening course", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.2.2", "label": "Role-playing difficult conversations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.3", "label": "Building Resilience", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.3", "label": "Setting Boundaries", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.3.1", "label": "Boundaries scenario learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "3.3.2", "label": "Boundary setting plan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.1", "label": "Documentary on stress", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.2", "label": "Meditation exercise", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5", "label": "Final Project", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.1.Q1", "label": "What are the physiological effects of stress on the body?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.1.Q2", "label": "How does stress affect your mental health?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.1.Q3", "label": "Identify a stress-reducing technique and describe how it works.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.2.Q1", "label": "Describe your experience with meditation or a similar relaxation technique.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.2.Q2", "label": "What challenges do you face when trying to meditate?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.1.2.Q3", "label": "How has meditation (or not) impacted your stress levels?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.2.1", "label": "Coping strategies workshop", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.2.2", "label": "Stress management plan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.3.1", "label": "Adversity stories", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "4.3.2", "label": "Resilience plan workshop", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5.1", "label": "Personal Growth Plan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5.2", "label": "Community Contribution", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5.2.Q1", "label": "Identify a community project you can contribute to.", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5.2.Q2", "label": "What role can you play in this community project?", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "5.2.Q3", "label": "How can your contribution impact the community?", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "1.1", "to": "1.1.1", "width": 1}, {"arrows": "to", "from": "1.1", "to": "1.1.2", "width": 1}, {"arrows": "to", "from": "1.1", "to": "2.1", "width": 1}, {"arrows": "to", "from": "1.1.1", "to": "1.1.1.Q1", "width": 1}, {"arrows": "to", "from": "1.1.1", "to": "1.1.1.Q2", "width": 1}, {"arrows": "to", "from": "1.1.1", "to": "1.1.1.Q3", "width": 1}, {"arrows": "to", "from": "1.1.2", "to": "1.1.2.Q1", "width": 1}, {"arrows": "to", "from": "1.1.2", "to": "1.1.2.Q2", "width": 1}, {"arrows": "to", "from": "1.1.2", "to": "1.1.2.Q3", "width": 1}, {"arrows": "to", "from": "1.2", "to": "1.2.1", "width": 1}, {"arrows": "to", "from": "1.2", "to": "1.2.2", "width": 1}, {"arrows": "to", "from": "1.2", "to": "2.3", "width": 1}, {"arrows": "to", "from": "1.2.1", "to": "1.2.1.Q1", "width": 1}, {"arrows": "to", "from": "1.2.1", "to": "1.2.1.Q2", "width": 1}, {"arrows": "to", "from": "1.2.1", "to": "1.2.1.Q3", "width": 1}, {"arrows": "to", "from": "1.2.2", "to": "1.2.2.Q1", "width": 1}, {"arrows": "to", "from": "1.2.2", "to": "1.2.2.Q2", "width": 1}, {"arrows": "to", "from": "1.2.2", "to": "1.2.2.Q3", "width": 1}, {"arrows": "to", "from": "1.3", "to": "1.3.1", "width": 1}, {"arrows": "to", "from": "1.3", "to": "1.3.2", "width": 1}, {"arrows": "to", "from": "2.1", "to": "2.1.1", "width": 1}, {"arrows": "to", "from": "2.1", "to": "2.1.2", "width": 1}, {"arrows": "to", "from": "2.1", "to": "3.1", "width": 1}, {"arrows": "to", "from": "2.1.1", "to": "2.1.1.Q1", "width": 1}, {"arrows": "to", "from": "2.1.1", "to": "2.1.1.Q2", "width": 1}, {"arrows": "to", "from": "2.1.1", "to": "2.1.1.Q3", "width": 1}, {"arrows": "to", "from": "2.1.2", "to": "2.1.2.Q1", "width": 1}, {"arrows": "to", "from": "2.1.2", "to": "2.1.2.Q2", "width": 1}, {"arrows": "to", "from": "2.1.2", "to": "2.1.2.Q3", "width": 1}, {"arrows": "to", "from": "2.2", "to": "2.2.1", "width": 1}, {"arrows": "to", "from": "2.2", "to": "2.2.2", "width": 1}, {"arrows": "to", "from": "2.2", "to": "4.2", "width": 1}, {"arrows": "to", "from": "2.3", "to": "2.3.1", "width": 1}, {"arrows": "to", "from": "2.3", "to": "2.3.2", "width": 1}, {"arrows": "to", "from": "3.1", "to": "3.1.1", "width": 1}, {"arrows": "to", "from": "3.1", "to": "3.1.2", "width": 1}, {"arrows": "to", "from": "3.1", "to": "4.1", "width": 1}, {"arrows": "to", "from": "3.1.1", "to": "3.1.1.Q1", "width": 1}, {"arrows": "to", "from": "3.1.1", "to": "3.1.1.Q2", "width": 1}, {"arrows": "to", "from": "3.1.1", "to": "3.1.1.Q3", "width": 1}, {"arrows": "to", "from": "3.1.2", "to": "3.1.2.Q1", "width": 1}, {"arrows": "to", "from": "3.1.2", "to": "3.1.2.Q2", "width": 1}, {"arrows": "to", "from": "3.1.2", "to": "3.1.2.Q3", "width": 1}, {"arrows": "to", "from": "3.2", "to": "3.2.1", "width": 1}, {"arrows": "to", "from": "3.2", "to": "3.2.2", "width": 1}, {"arrows": "to", "from": "3.2", "to": "4.3", "width": 1}, {"arrows": "to", "from": "3.3", "to": "3.3.1", "width": 1}, {"arrows": "to", "from": "3.3", "to": "3.3.2", "width": 1}, {"arrows": "to", "from": "4.1", "to": "4.1.1", "width": 1}, {"arrows": "to", "from": "4.1", "to": "4.1.2", "width": 1}, {"arrows": "to", "from": "4.1", "to": "5", "width": 1}, {"arrows": "to", "from": "4.1.1", "to": "4.1.1.Q1", "width": 1}, {"arrows": "to", "from": "4.1.1", "to": "4.1.1.Q2", "width": 1}, {"arrows": "to", "from": "4.1.1", "to": "4.1.1.Q3", "width": 1}, {"arrows": "to", "from": "4.1.2", "to": "4.1.2.Q1", "width": 1}, {"arrows": "to", "from": "4.1.2", "to": "4.1.2.Q2", "width": 1}, {"arrows": "to", "from": "4.1.2", "to": "4.1.2.Q3", "width": 1}, {"arrows": "to", "from": "4.2", "to": "4.2.1", "width": 1}, {"arrows": "to", "from": "4.2", "to": "4.2.2", "width": 1}, {"arrows": "to", "from": "4.3", "to": "4.3.1", "width": 1}, {"arrows": "to", "from": "4.3", "to": "4.3.2", "width": 1}, {"arrows": "to", "from": "5", "to": "5.1", "width": 1}, {"arrows": "to", "from": "5", "to": "5.2", "width": 1}, {"arrows": "to", "from": "5.2", "to": "5.2.Q1", "width": 1}, {"arrows": "to", "from": "5.2", "to": "5.2.Q2", "width": 1}, {"arrows": "to", "from": "5.2", "to": "5.2.Q3", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
